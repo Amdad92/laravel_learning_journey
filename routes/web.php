@@ -66,3 +66,22 @@ route::get('/current-user',function(){
 
     return to_route('profile', ['name' => 'guest', 'id' => 0]); // নতুন শর্টকার্ট (লারাভেল ৯+)
 });
+
+//Route Group
+
+route::prefix('admin')->group(function () {
+    route::get('/users',function(){
+        return 'admin/user';
+    });
+});
+
+route::name('admin.')->group(function () {
+    route::get('/users',function(){
+        return '/user';
+    })->name('users');
+});
+
+/*
+    prefix('admin')	URL এ প্রিফিক্স যোগ করে	/admin/users
+    name('admin.')	রাউট নামে প্রিফিক্স যোগ করে	admin.users
+*/
