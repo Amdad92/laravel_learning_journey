@@ -43,3 +43,14 @@ Route::get('{lang}/product/{id}', function (string $lang, string $id) {
     'lang' => '[a-z]{2}',
     'id' => '\d{4,}'
 ]);
+
+//Named route with parameters
+
+Route::get('p/{lang}/product/{id}', function(string $lang, string $id) {
+    return "Your selected language is $lang and product id is $id";
+})->name("product.view");
+
+route::get('/',function(){
+    $productUrl=route('product.view',['lang'=>'en','id'=>1]);
+    dd($productUrl);
+});
