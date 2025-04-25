@@ -54,3 +54,15 @@ route::get('/',function(){
     $productUrl=route('product.view',['lang'=>'en','id'=>1]);
     dd($productUrl);
 });
+
+route::view('/about-us','about')->name('about');
+
+route::get('/user/profile/{name}/{id}',function(string $name, string $id){
+    return "My name is $name and my id is $id";
+})->name('profile');
+
+route::get('/current-user',function(){
+   // return redirect()->route('profile'); // পুরানো ভার্সন
+
+    return to_route('profile', ['name' => 'guest', 'id' => 0]); // নতুন শর্টকার্ট (লারাভেল ৯+)
+});
